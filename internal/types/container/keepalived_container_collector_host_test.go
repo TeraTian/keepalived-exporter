@@ -10,6 +10,7 @@ func TestInitPaths(t *testing.T) {
 	t.Parallel()
 
 	k := KeepalivedContainerCollectorHost{}
+
 	k.initPaths("/custom-tmp")
 
 	if k.jsonPath != "/custom-tmp/keepalived.json" {
@@ -29,12 +30,16 @@ func TestHasVRRPScriptStateSupport(t *testing.T) {
 	t.Parallel()
 
 	testCaseses := []struct {
-		name            string
-		version         *version.Version
+		name string
+
+		version *version.Version
+
 		expectedSupport bool
 	}{
 		{name: "nil", version: nil, expectedSupport: true},
+
 		{name: "1.4.0", version: version.Must(version.NewVersion("1.4.0")), expectedSupport: true},
+
 		{name: "1.3.5", version: version.Must(version.NewVersion("1.3.5")), expectedSupport: false},
 	}
 

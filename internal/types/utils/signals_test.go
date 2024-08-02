@@ -11,11 +11,13 @@ func TestHasSigNumSupport(t *testing.T) {
 	t.Parallel()
 
 	notSupportingVersion := version.Must(version.NewVersion("1.3.5"))
+
 	if HasSigNumSupport(notSupportingVersion) {
 		t.Fail()
 	}
 
 	supportingVersion := version.Must(version.NewVersion("1.3.8"))
+
 	if !HasSigNumSupport(supportingVersion) {
 		t.Fail()
 	}
